@@ -49,6 +49,28 @@ This Python script helps you generate a Helm chart interactively for Kubernetes 
 python gen_helm_chart_interactive.py
 ```
 
+```bash
+Name of the Helm chart [my_chart]: test-chart
+Directory to create the Helm chart [my_chart]: test-chart
+Include Deployment object? (y/n): y
+Number of replicas for Deployment [1]: 2
+Deployment image [None]: nginx:latest
+Deployment container port [None]: 80
+Deployment container port name [http]: http
+Name of the Deployment [test-chart-deployment]: nginx
+Include Ingress object? (y/n): y
+Name of the Ingress [test-chart-ingress]: nginx-ingress
+Ingress host [None]: test.com
+Ingress port [80]: 
+Ingress path [None]: /
+Ingress class [nginx]: 
+Include Service object? (y/n): y
+Name of the Service [test-chart-service]: nginx-service
+Service port [80]: 
+Service targetPort [8080]: 
+Helm chart 'test-chart' created successfully in the 'test-chart' directory.
+```
+
 ### Noninteractive Mode
 
 ```bash
