@@ -48,6 +48,12 @@ terraform.rc
 *.so
 *.dylib
 
+.env
+# pycache files
+**/__pycache__/*
+**/**/__pycache__/*
+**/**/**/__pycache__/*
+
 # Test binary, built with `go test -c`
 *.test
 
