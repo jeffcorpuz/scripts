@@ -1,23 +1,33 @@
 import requests
 import discord
+import asyncio
+import aiohttp
+import os
+
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Discord Webhook URL
-WEBHOOK_URL = "https://discord.com/api/webhooks/1187825630339944652/uk1TEq-Ikr2zyHnni7YFJjuruxp2N3CvY9hSKCeSKe7KXverLoApCgiAm4DEBF2_1T5k"
+WEBHOOK_URL: str | None = os.getenv(key="DISCORD_WEBHOOK_URL")
 
 # LeetCode Random Question URL
 LEETCODE_RANDOM_URL = "https://leetcode.com/problems/random-one-question/"
 
-def get_random_question():
-    response = requests.get(LEETCODE_RANDOM_URL)
+# get a random problem of the day
+def get_random_question() -> str:
+    response = requests.get(url=LEETCODE_RANDOM_URL)
     return response.url
 
-def send_webhook(message):
-    webhook = discord.Webhook.from_url(WEBHOOK_URL, adapter=discord.RequestsWebhookAdapter())
-    webhook.send(content=message)
+async def send_webhook(message) -> None:
+    async with aiohttp.ClientSession() as session:
+        webhook = discord.Webhook.from_url(WEBHOOK_URL, session=session)
+        await webhook.send(content=message, username='leetcode-bot')
 
-def main():
-    random_question = get_random_question()
-    send_webhook(random_question)
+async def main() -> None:
+    random_question: str = get_random_question()
+    await send_webhook(message=random_question)
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main=main())
