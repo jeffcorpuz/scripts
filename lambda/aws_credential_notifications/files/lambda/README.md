@@ -49,5 +49,3 @@ Configure the `SlackWebhookURL` environment variable with the appropriate Slack 
 
 - The Lambda function assumes that environment variables are correctly set, including `SLACK_WEBHOOK_URL` for Slack integration.
 - Ensure that the Lambda execution role has the necessary IAM permissions to interact with IAM, generate credential reports, and send notifications to Slack.
-
-Feel free to adapt the code and configurations to fit your specific requirements. If you encounter any issues or have suggestions for improvement, please refer to the [GitHub repository](https://github.com/your/repository) and open an issue or submit a pull request.
