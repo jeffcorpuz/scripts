@@ -1,0 +1,11 @@
+# Use the Amazon Corretto 11 base image
+FROM public.ecr.aws/lambda/java:11
+
+# Set the working directory
+WORKDIR /var/task
+
+# Copy the JAR file and any dependencies
+COPY your_lambda_function.jar /var/task/
+
+# Specify the handler for the Lambda function
+CMD ["your.package.YourLambdaHandler::handleRequest"]
