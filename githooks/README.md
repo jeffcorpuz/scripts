@@ -53,6 +53,6 @@ Now, commit any changes you've made, and the pre-commit hook will automatically 
 
 ## Contributing
 
-If you encounter any issues or have suggestions for improvement, feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/your/repository).
+If you encounter any issues or have suggestions for improvement, feel free to open an issue or submit a pull request.
 
 Happy Terraforming!
