@@ -66,3 +66,82 @@ Make sure to replace `script_name.py` with the actual name of your script.
 - The script prints the title and URL of the fetched submission when run locally.
 
 Feel free to customize the script further based on your requirements.
+
+# Terraform Setup for AWS Lambda Function
+
+This Terraform configuration sets up an AWS Lambda function named "wholesomify" along with an IAM role necessary for its execution. The Lambda function is written in Python 3.11 and is designed to be triggered by AWS services such as API Gateway.
+
+## Prerequisites
+
+Before running this Terraform configuration, ensure that you have:
+
+- [Terraform](https://www.terraform.io/) installed on your local machine.
+- Appropriate AWS credentials configured on your machine.
+
+## Configuration
+
+1. Clone this repository to your local machine.
+
+   ```bash
+   git clone <repository-url>
+   ```
+
+2. Navigate to the directory containing the Terraform files.
+
+   ```bash
+   cd <repository-directory>
+   ```
+
+3. Open the `main.tf` file and replace any placeholder values with your own configurations if needed.
+
+## Running Terraform
+
+1. Initialize your Terraform working directory.
+
+   ```bash
+   terraform init
+   ```
+
+2. Review the Terraform execution plan.
+
+   ```bash
+   terraform plan
+   ```
+
+3. Apply the Terraform configuration to create the Lambda function and IAM role.
+
+   ```bash
+   terraform apply
+   ```
+
+   Terraform will prompt you to confirm the changes. Type `yes` to proceed.
+
+4. After the apply is complete, Terraform will output information about the created resources, including the Lambda function's ARN.
+
+## Cleaning Up
+
+If you want to remove the created resources:
+
+1. Run the following command to destroy the resources.
+
+   ```bash
+   terraform destroy
+   ```
+
+   Terraform will prompt you to confirm the destruction. Type `yes` to proceed.
+
+2. After the destroy is complete, run the following command to clean up any residual Terraform files.
+
+   ```bash
+   terraform clean
+   ```
+
+## Notes
+
+- The IAM role (`aws_iam_role`) allows the Lambda function to be assumed by the Lambda service, enabling it to execute.
+
+- The Lambda function (`aws_lambda_function`) is defined with the name "wholesomify" and is associated with the specified IAM role.
+
+- The source code for the Lambda function is packaged in a ZIP file (`lambda.zip`) using the `archive_file` data source. The code is assumed to be located in the `files/` directory relative to the Terraform files.
+
+Feel free to customize the Terraform configuration based on your specific requirements.
