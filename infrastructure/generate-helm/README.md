@@ -114,7 +114,3 @@ sample json file
 ## License
 
 This script is licensed under the [MIT License](LICENSE).
-
----
-
-Feel free to customize this README to better fit your specific use case or requirements.
