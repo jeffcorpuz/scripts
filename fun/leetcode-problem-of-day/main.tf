@@ -27,7 +27,7 @@ data "archive_file" "lambda_zip" {
 resource "aws_lambda_function" "this" {
   function_name = "leetcode-bot"
   role          = "${aws_iam_role.this.arn}"
-  handler       = "lambda"
+  handler       = "lambda_handler"
 
   filename         = data.archive_file.lambda_zip.output_path
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
