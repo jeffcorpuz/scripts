@@ -1,5 +1,4 @@
 import os
-import yaml
 
 def prompt_for_input(parameter, default_value=None):
     user_input = input(f"{parameter} [{default_value}]: ").strip()
