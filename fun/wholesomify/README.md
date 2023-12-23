@@ -1,5 +1,4 @@
-# SlackBot for Wholesome Content - Setup and Usage Guide
-
+# SlackBot for Wholesome Content
 This guide will walk you through the process of setting up and using the SlackBot for fetching wholesome content from Reddit. The bot can be deployed on AWS Lambda and is triggered daily.
 
 ## Prerequisites

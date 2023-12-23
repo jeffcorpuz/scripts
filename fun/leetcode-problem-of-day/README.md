@@ -1,4 +1,4 @@
-# LeetCode Discord Bot - Setup and Usage Guide
+# LeetCode Discord Bot
 
 This guide will help you set up and use the LeetCode Discord bot, which fetches a random LeetCode question daily and sends it to a specified Discord channel. The bot can be deployed on AWS Lambda.
 
