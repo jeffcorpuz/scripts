@@ -48,3 +48,15 @@ resource "aws_lambda_function" "this" {
   #   }
   # }
 }
+
+# if you want to add daily trigger
+resource "aws_cloudwatch_event_rule" "daily_trigger" {
+  name                = "daily_lambda_trigger"
+  description         = "Trigger Lambda function daily"
+  schedule_expression = "cron(0 12 * * ? *)"
+}
+
+resource "aws_cloudwatch_event_target" "lambda_target" {
+  rule = aws_cloudwatch_event_rule.daily_trigger.name
+  arn  = aws_lambda_function.this.arn
+}
