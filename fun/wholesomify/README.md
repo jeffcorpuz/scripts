@@ -36,13 +36,13 @@ Before you begin, make sure you have the following:
     terraform plan
     ```
 
-   Terraform will prompt you to confirm the changes. Type `yes` to proceed.
-
 2. Run the following Terraform command to package and deploy the Lambda function:
 
     ```bash
     terraform apply
     ```
+
+    Terraform will prompt you to confirm the changes. Type `yes` to proceed.
 
 ### 3. Configure Environment Variables (Optional)
 
@@ -56,7 +56,7 @@ If deployed on AWS Lambda with the CloudWatch Events rule, the bot will run dail
 
 ### 2. Local Testing (Optional)
 
-If you want to test the Lambda function locally, uncomment the last section of the Python script and run the script:
+If you want to test the Lambda function locally, run the script:
 
 ```bash
 python main.py

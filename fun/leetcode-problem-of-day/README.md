@@ -32,13 +32,13 @@ Before starting, ensure you have the following:
     terraform plan
     ```
 
-   Terraform will prompt you to confirm the changes. Type `yes` to proceed.
-
 2. Run the following Terraform command to package and deploy the Lambda function:
 
     ```bash
     terraform apply
     ```
+
+   Terraform will prompt you to confirm the changes. Type `yes` to proceed.
 
 ### 3. Local Testing (Optional)
 
