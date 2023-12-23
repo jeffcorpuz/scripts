@@ -25,7 +25,7 @@ This Python script is a simple Discord bot that fetches a random LeetCode proble
 1. Run the script locally for testing:
 
    ```bash
-   python script_name.py
+   python main.py
    ```
 
 2. Ensure that the `.env` file contains the correct `DISCORD_WEBHOOK_URL`.

@@ -52,10 +52,8 @@ Before running the script, make sure you have the following installed:
 Run the script locally for testing:
 
 ```bash
-python script_name.py
+python main.py
 ```
-
-Make sure to replace `script_name.py` with the actual name of your script.
 
 ## Note
 
