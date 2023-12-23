@@ -1,16 +1,16 @@
-# Wholesomify Reddit Bot - Setup and Usage Guide
+# SlackBot for Wholesome Content - Setup and Usage Guide
 
-This guide will help you set up and use the Wholesomify Reddit bot, which fetches wholesome content from Reddit and can be deployed on AWS Lambda.
+This guide will walk you through the process of setting up and using the SlackBot for fetching wholesome content from Reddit. The bot can be deployed on AWS Lambda and is triggered daily.
 
 ## Prerequisites
 
-Before getting started, make sure you have the following:
+Before you begin, make sure you have the following:
 
 - [Python](https://www.python.org/) installed on your local machine.
 - [Terraform](https://www.terraform.io/) installed for deploying on AWS Lambda.
 - An AWS account with the necessary permissions to create Lambda functions.
-- A [Reddit](https://www.reddit.com/) account with the credentials required for the bot.
-- Optionally, if you want to deploy the bot on AWS Lambda, you'll need the [AWS CLI](https://aws.amazon.com/cli/) installed and configured.
+- A Reddit account with the credentials required for the bot.
+- A Slack workspace where you have permission to add a bot.
 
 ## Setup
 
@@ -28,52 +28,44 @@ Before getting started, make sure you have the following:
     LIMIT=20
     ```
 
-### 2. Local Testing
+### 2. AWS Lambda
 
-Run the bot locally for testing:
-
-```bash
-python main.py
-```
-
-### 3. Deploy on AWS Lambda (Optional)
-
-1. Configure AWS credentials using the AWS CLI:
-
-    ```bash
-    aws configure
-    ```
-
-2. Run Terraform commands to deploy the bot on AWS Lambda:
+1. Run the following Terraform commands to set up the AWS Lambda function and CloudWatch Events rule:
 
     ```bash
     terraform init
     terraform plan
+    ```
+
+   Terraform will prompt you to confirm the changes. Type `yes` to proceed.
+
+2. Run the following Terraform command to package and deploy the Lambda function:
+
+    ```bash
     terraform apply
     ```
 
+### 3. Configure Environment Variables (Optional)
+
+If you prefer, you can set environment variables directly in the Terraform script instead of using a `.env` file. Uncomment and modify the `environment` block in the Lambda function in the Terraform script.
+
 ## Usage
 
-### 1. Local Testing
+### 1. AWS Lambda
 
-If you are testing locally, the bot will print a submission title and URL to the console.
+If deployed on AWS Lambda with the CloudWatch Events rule, the bot will run daily at 12:00 PM UTC. The result will be sent to the specified Slack channel.
+
+### 2. Local Testing (Optional)
+
+If you want to test the Lambda function locally, uncomment the last section of the Python script and run the script:
 
 ```bash
 python main.py
 ```
 
-```bash
-title: Your Submission Title
-url: https://www.reddit.com/r/wholesomememes/
-```
-
-### 2. AWS Lambda
-
-If deployed on AWS Lambda with the CloudWatch Events rule, the bot will run daily at 12:00 PM UTC. The result will be sent to the specified destination (e.g., Discord channel or other integration).
-
 ## Customization
 
-- **Reddit Source Subreddits**: You can modify the `choice` list in the `wholesomify` function to include your preferred subreddits.
+- **Reddit Source Subreddits**: You can customize the `choice` list in the `wholesomify` function to include your preferred subreddits.
   
 - **Deployment Configuration**: Adjust the AWS Lambda configuration in the Terraform script based on your preferences (e.g., memory size, timeout).
 
@@ -97,4 +89,4 @@ If you want to remove the deployed resources:
     terraform clean
     ```
 
-Now you're all set! Enjoy the wholesome content delivered by your Wholesomify Reddit bot.
+Now you're all set! Enjoy the daily dose of wholesome content delivered by your SlackBot.
