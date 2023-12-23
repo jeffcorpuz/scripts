@@ -145,3 +145,93 @@ If you want to remove the created resources:
 - Optionally, you can configure environment variables for the Lambda function by uncommenting the `environment` block and providing appropriate values. Alternatively, you can use a `.env` file for sensitive information.
 
 Feel free to customize the Terraform configuration based on your specific requirements.
+
+# Installing the Wholesomify Slackbot
+
+This guide will walk you through the process of installing and configuring the Wholesomify Slackbot, a bot that fetches wholesome content from Reddit.
+
+## Prerequisites
+
+Before starting, ensure you have the following:
+
+- [Python](https://www.python.org/) installed on your machine (version 3.6 or higher).
+- A [Slack](https://slack.com/) workspace where you have permissions to add apps and bots.
+- [ngrok](https://ngrok.com/) or a similar tool to expose your local server to the internet (for local testing).
+
+## Installation Steps
+
+### 1. Clone the Repository
+
+Clone the Wholesomify Slackbot repository to your local machine.
+
+```bash
+git clone <repository-url>
+cd <repository-directory>
+```
+
+### 2. Set Up Reddit API Credentials
+
+1. Create a Reddit App on the [Reddit Developer Portal](https://www.reddit.com/prefs/apps).
+2. Obtain the `client_id`, `client_secret`, `username`, and `password`.
+3. Create a `.env` file in the project directory with the following content:
+
+    ```env
+    REDDITNAME=your_reddit_username
+    PASSWORD=your_reddit_password
+    APPID=your_reddit_app_id
+    APISECRET=your_reddit_api_secret
+    APPNAME=your_app_name
+    LIMIT=20
+    ```
+
+    Replace the placeholder values with your Reddit credentials and application information.
+
+### 3. Install Dependencies
+
+Install the required Python dependencies using pip.
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Set Up Slack App
+
+1. Visit the [Slack API](https://api.slack.com/apps) page and create a new app.
+2. Under "Add features and functionality," select "Slash Commands."
+3. Create a new slash command, e.g., `/wholesomify`.
+4. Set the "Request URL" to the ngrok or public server URL where your bot will be hosted (see step 6).
+5. Install the app to your workspace.
+
+### 5. Start the Bot Locally
+
+Run the Wholesomify Slackbot locally for testing.
+
+```bash
+python script_name.py
+```
+
+Replace `script_name.py` with the actual name of your script.
+
+### 6. Expose Local Server (For Local Testing)
+
+If you are testing locally, use ngrok to expose your local server to the internet.
+
+```bash
+ngrok http 5000
+```
+
+Update the Slack slash command "Request URL" with the ngrok URL.
+
+### 7. Test the Slackbot
+
+In your Slack workspace, use the slash command `/wholesomify` to trigger the bot and receive a wholesome content URL.
+
+### 8. Deploy to Server (Optional)
+
+If you want the Slackbot to be available 24/7, deploy the bot to a server or a cloud platform like AWS Lambda.
+
+### 9. Enjoy Wholesome Content!
+
+Now, whenever you use the `/wholesomify` command in your Slack workspace, the bot will fetch and share a wholesome Reddit submission.
+
+Feel free to customize the Slackbot further based on your preferences and requirements!
