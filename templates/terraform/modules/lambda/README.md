@@ -1,5 +1,3 @@
-Certainly! Here's a simple README to guide users on how to run the provided Terraform code:
-
 # Running Terraform for AWS Lambda Deployment
 
 This Terraform configuration deploys an AWS Lambda function using a Docker image.

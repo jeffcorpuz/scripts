@@ -30,5 +30,5 @@ module "lambda_function" {
 
   vpc_subnet_ids         = data.aws_subnets.selected.ids
   vpc_security_group_ids = [data.aws_security_group.id]
-  attach_network_policy = true
+  attach_network_policy  = true
 }
