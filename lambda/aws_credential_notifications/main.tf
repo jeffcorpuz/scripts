@@ -1,12 +1,3 @@
-terraform {
-  required_version = ">= 0.12.9"
-}
-
-provider "aws" {
-  version = ">= 2.43"
-  region  = "us-east-1"
-}
-
 # This is required to get the AWS region via ${data.aws_region.current}.
 data "aws_region" "current" {
 }
@@ -28,7 +19,7 @@ resource "aws_lambda_function" "main" {
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   handler          = "lambda"
 
-  runtime     = "go1.x"
+  runtime     = "go2.x"
   memory_size = 128
   timeout     = 60 # in seconds
 
@@ -127,8 +118,8 @@ EOF
 # Set-up Cloudwatch Event and Rules
 # Example : Use for Cron/Rate jobs for AWS Lambda
 resource "aws_cloudwatch_event_rule" "cw_rule" {
-  name                = var.name
-  description         = var.description
+  name                = "${var.name} - Lambda Rule"
+  description         = "cloudwatch event rule for aws credential notification"
   schedule_expression = var.schedule
 }
 

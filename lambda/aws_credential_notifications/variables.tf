@@ -4,6 +4,12 @@ variable "name" {
   default     = "aws-credentials-expiration-slack-notification"
 }
 
+variable "region" {
+  type        = string
+  description = "AWS region"
+  default     = "us-east-2" 
+}
+
 variable "application" {
   type        = string
   description = "The application (for tagging the resources)"
