@@ -42,16 +42,16 @@ The script includes an AWS Lambda handler to facilitate integration with AWS ser
 
 Feel free to adapt and extend the script to suit your needs.
 
-# Terraform Setup for AWS Lambda Function
+# Terraform Configuration for Daily Scheduled Lambda Execution
 
-This Terraform configuration sets up an AWS Lambda function named "leetcode-bot" along with an IAM role necessary for its execution. The Lambda function is written in Python 3.11 and is designed to be triggered by AWS services such as API Gateway.
+This Terraform configuration sets up an AWS Lambda function named "leetcode-bot" and schedules it to run daily using AWS CloudWatch Events. The Lambda function is assigned an IAM role that allows it to be executed by AWS Lambda.
 
 ## Prerequisites
 
-Before running this Terraform configuration, ensure that you have:
+Before using this Terraform configuration, ensure that you have:
 
 - [Terraform](https://www.terraform.io/) installed on your local machine.
-- Appropriate AWS credentials configured on your machine.
+- AWS credentials configured on your machine.
 
 ## Configuration
 
@@ -83,7 +83,7 @@ Before running this Terraform configuration, ensure that you have:
    terraform plan
    ```
 
-3. Apply the Terraform configuration to create the Lambda function and IAM role.
+3. Apply the Terraform configuration to create the Lambda function, IAM role, and CloudWatch Events rule.
 
    ```bash
    terraform apply
@@ -117,6 +117,8 @@ If you want to remove the created resources:
 
 - The Lambda function (`aws_lambda_function`) is defined with the name "leetcode-bot" and is associated with the specified IAM role.
 
-- The source code for the Lambda function is packaged in a ZIP file (`lambda.zip`) using the `archive_file` data source. The code is assumed to be located in the `files/` directory relative to the Terraform files.
+- The CloudWatch Events rule (`aws_cloudwatch_event_rule`) triggers the Lambda function every day at 12:00 PM UTC. You can adjust the `schedule_expression` as needed.
+
+- The CloudWatch Events target (`aws_cloudwatch_event_target`) associates the CloudWatch Events rule with the Lambda function.
 
 Feel free to customize the Terraform configuration based on your specific requirements.

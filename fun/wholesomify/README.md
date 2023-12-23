@@ -67,16 +67,16 @@ Make sure to replace `script_name.py` with the actual name of your script.
 
 Feel free to customize the script further based on your requirements.
 
-# Terraform Setup for AWS Lambda Function
+# Terraform Configuration for Wholesomify Lambda Function
 
-This Terraform configuration sets up an AWS Lambda function named "wholesomify" along with an IAM role necessary for its execution. The Lambda function is written in Python 3.11 and is designed to be triggered by AWS services such as API Gateway.
+This Terraform configuration sets up an AWS Lambda function named "wholesomify" and, optionally, schedules it to run daily using AWS CloudWatch Events. The Lambda function is assigned an IAM role that allows it to be executed by AWS Lambda.
 
 ## Prerequisites
 
-Before running this Terraform configuration, ensure that you have:
+Before using this Terraform configuration, ensure that you have:
 
 - [Terraform](https://www.terraform.io/) installed on your local machine.
-- Appropriate AWS credentials configured on your machine.
+- AWS credentials configured on your machine.
 
 ## Configuration
 
@@ -108,7 +108,7 @@ Before running this Terraform configuration, ensure that you have:
    terraform plan
    ```
 
-3. Apply the Terraform configuration to create the Lambda function and IAM role.
+3. Apply the Terraform configuration to create the Lambda function, IAM role, and, optionally, the CloudWatch Events rule.
 
    ```bash
    terraform apply
@@ -142,6 +142,8 @@ If you want to remove the created resources:
 
 - The Lambda function (`aws_lambda_function`) is defined with the name "wholesomify" and is associated with the specified IAM role.
 
-- The source code for the Lambda function is packaged in a ZIP file (`lambda.zip`) using the `archive_file` data source. The code is assumed to be located in the `files/` directory relative to the Terraform files.
+- The CloudWatch Events rule (`aws_cloudwatch_event_rule`) and target (`aws_cloudwatch_event_target`) can be uncommented if you want to trigger the Lambda function daily at 12:00 PM UTC. Adjust the `schedule_expression` as needed.
+
+- Optionally, you can configure environment variables for the Lambda function by uncommenting the `environment` block and providing appropriate values. Alternatively, you can use a `.env` file for sensitive information.
 
 Feel free to customize the Terraform configuration based on your specific requirements.
