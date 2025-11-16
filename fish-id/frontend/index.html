@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Fish Pokédex</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>🐠 Fish Pokédex</h1>
+    <p>Upload an underwater photo to classify and explore species info.</p>
+  </header>
+
+  <section class="upload">
+    <form id="classifyForm">
+      <input type="file" id="fileInput" accept="image/*" required />
+      <button type="submit">Classify</button>
+    </form>
+    <div id="classifyResults"></div>
+  </section>
+
+  <section class="species" id="speciesSection" hidden>
+    <h2>Species Info</h2>
+    <div id="speciesInfo"></div>
+  </section>
+
+  <section class="sighting" id="sightingSection" hidden>
+    <h2>Log Sighting</h2>
+    <form id="sightingForm">
+      <input type="text" id="speciesGuess" placeholder="Species guess" />
+      <input type="number" step="0.0001" id="latitude" placeholder="Latitude" required />
+      <input type="number" step="0.0001" id="longitude" placeholder="Longitude" required />
+      <input type="number" step="0.1" id="depth" placeholder="Depth (m)" />
+      <textarea id="notes" placeholder="Notes"></textarea>
+      <button type="submit">Save Sighting</button>
+    </form>
+    <div id="sightingResult"></div>
+  </section>
+
+  <section class="log">
+    <h2>Recent Sightings</h2>
+    <button id="refreshSightings">Refresh</button>
+    <ul id="sightingsList"></ul>
+  </section>
+
+  <footer>
+    <small>Data via HuggingFace, iNaturalist, Wikipedia. Prototype build.</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
